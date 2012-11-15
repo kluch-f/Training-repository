@@ -1,0 +1,59 @@
+<table id="rounded-corner" summary="some summary">
+    <thead>
+        <tr>
+            <th scope="col" class="rounded-company">Date</th>
+            <th scope="col" class="rounded-q1">Place</th>
+            <th scope="col" class="rounded-q2">Amount</th>
+            <th scope="col" class="rounded-q3">Comment</th>
+            <th scope="col" class="rounded-q3">Actions</th>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <p>
+                    <label for="months">Show records for :</label>
+                    <select id="months" name="months">
+                        <?php foreach ($this->months as $monthData): ?>
+                            <option value="<?php echo $monthData['value'] ?>" <?php if ($monthData['selected']): ?>selected<?php endif; ?>><?php echo $monthData['label'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <script type="text/javascript">
+                        $("#months").change(function () {
+                            var str = "";
+                            $("select option:selected").each(function () {
+                                window.location.href = '<?php echo $this->url(array('controller'=>'index'), 'default', true) ?>?date=' + $(this).val();
+                            });
+                        });
+                    </script>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <em><b>Total for this month: <?php echo $this->total; ?></b></em>
+                <em style="float: right;"><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'edit')) ?>">Add Record</a></em>
+            </td>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td colspan="5" class="rounded-foot-left">
+                <em><b>Total for this month: <?php echo $this->total; ?></b></em>
+                <em style="float: right;"><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'edit')) ?>">Add Record</a></em>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <?php foreach ($this->data as $row): ?>
+        <tr>
+            <td><?php echo $row->createdAt; ?></td>
+            <td><?php echo $row->place; ?></td>
+            <td><?php echo $row->amount; ?></td>
+            <td><?php echo $row->comment; ?></td>
+            <td>
+                <a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'edit', 'id' => $row->id)) ?>">Edit</a>
+                | <a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'delete', 'id' => $row->id)) ?>" onclick="return confirm('Are you sure?');">Delete</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

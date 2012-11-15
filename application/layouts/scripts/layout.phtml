@@ -1,0 +1,92 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headLink(); ?>
+    <?php echo $this->headScript(); ?>
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="/media/css/style-ie.css" />
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(function() {
+            $("ul.dropdown li").hover(function() {
+                $(this).addClass("hover");
+                $('ul:first',this).css('visibility', 'visible');
+
+            }, function() {
+                $(this).removeClass("hover");
+                $('ul:first',this).css('visibility', 'hidden');
+            });
+            $("ul.dropdown li ul li:has(ul)").find("a:first").append(" &raquo; ");
+        });
+    </script>
+</head>
+
+<body>
+
+<div id="header">
+
+    <div id="social">
+        <a href="#"><img src="/media/images/facebook.png" width="26" height="26" alt="facebook" /></a>
+        <a href="#"><img src="/media/images/twitter.png" width="26" height="26" alt="twitter" /></a>
+        <a href="#"><img src="/media/images/linkedin.png" width="26" height="26" alt="linkedin" /></a>
+        <a href="#"><img src="/media/images/email.png" width="26" height="26" alt="email" /></a>
+    </div>
+
+</div>
+
+<ul class="dropdown"><!-- menu -->
+
+    <li><a href="<?php echo $this->url(array('controller'=>'index'), 'default', true) ?>">Home</a></li>
+    <li><a href="<?php echo $this->url(array('controller' => 'example'), 'default', true) ?>">All expenses</a></li>
+
+</ul><!-- close menu -->
+
+<?php if ($this->message): ?>
+<!--<div id="intro">-->
+<!--    <p>--><!--</p>-->
+<!--</div>-->
+<script type="text/javascript">
+    $.jGrowl("<?php echo $this->message ?>", {sticky:true, theme:'ui-state-highlight'});
+</script>
+<?php endif; ?>
+
+
+<!--<div id="gallery">-->
+<!--    <ul>-->
+<!--        <li><a href="gallery.html"><img src="/media/images/tb1.jpg" alt="demo" /></a></li>-->
+<!--        <li><a href="gallery.html"><img src="/media/images/tb2.jpg" alt="demo" /></a></li>-->
+<!--        <li><a href="gallery.html"><img src="/media/images/tb3.jpg" alt="demo" /></a></li>-->
+<!--        <li><a href="gallery.html"><img src="/media/images/tb4.jpg" alt="demo" /></a></li>-->
+<!--    </ul>-->
+<!--</div>-->
+
+<div id="content"><?php echo $this->layout()->content ?></div>
+
+
+<!--<div id="box_left">-->
+<!--    <h3>About</h3>-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus dolor hendrerit lacus egestas sollicitudin. Nullam pharetra commodo sem, sit amet mattis metus vestibulum at. Suspendisse in tellus metus. Ut lobortis gravida magna, et mollis nisl luctus et. Ut quis neque eros</p>-->
+<!--    <a href="page.html"><img src="/media/images/more.png" class="more" width="68" height="24" alt="more" /></a>-->
+<!--</div>-->
+<!---->
+<!--<div id="box_right">-->
+<!--    <h3>Recent</h3>-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus dolor hendrerit lacus egestas sollicitudin. Nullam pharetra commodo sem, sit amet mattis metus vestibulum at. Suspendisse in tellus metus. Ut lobortis gravida magna, et mollis nisl luctus et. Ut quis neque eros</p>-->
+<!--    <a href="page.html"><img src="/media/images/more.png" class="more" width="68" height="24" alt="more" /></a>-->
+<!--</div>-->
+<!---->
+<!--<div id="box_middle">-->
+<!--    <h3>Services</h3>-->
+<!--    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent cursus dolor hendrerit lacus egestas sollicitudin. Nullam pharetra commodo sem, sit amet mattis metus vestibulum at. Suspendisse in tellus metus. Ut lobortis gravida magna, et mollis nisl luctus et. Ut quis neque eros</p>-->
+<!--    <a href="page.html"><img src="/media/images/more.png" class="more" width="68" height="24" alt="more" /></a>-->
+<!--</div>-->
+
+<div id="footer">
+    &copy; 2012 Katzchen-Wallet
+</div>
+
+</body>
+</html>
